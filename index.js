@@ -19,11 +19,17 @@ app.get('/', (req, res) => {
 
 io.on("connection", (socket) => {
 	console.log("We are connected")
-	
+
 	socket.emit("me", socket.id);
 
+	socket.on("join", (data, callback) => {
+		console.log("Join has been emmited")
+		console.log({data})
+		callback();
+	})
+
 	socket.on("disconnect", () => {
-		
+		console.log("we are disconnected")
 	});
 
 
